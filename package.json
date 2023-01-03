@@ -6,7 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "start":"node index.ts",
-    "dev": "nodemon index.ts "
+    "star:dev": "nodemon index.ts "
   },
   "repository": {
     "type": "git",
