@@ -1,1 +1,0 @@
-import { IUser } from "../userInterface.ts";
