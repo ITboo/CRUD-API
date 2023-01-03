@@ -1,0 +1,12 @@
+[{
+    "id": "b66423d0-782b-4cb4-bf79-581ae4c2501d",
+    "username": "First",
+    "age": 50,
+    "hobbies": ["music","meditation","books"]
+  },
+    {
+      "id": "166423d0-782b-4cb4-bf79-581ae4c0402s",
+      "username": "Second",
+      "age": 24,
+      "hobbies": ["games","gym","node"]
+    }]
