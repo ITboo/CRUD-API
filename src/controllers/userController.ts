@@ -27,13 +27,25 @@ export async function getUser(req: IncomingMessage, res: ServerResponse, id: str
     };
 };
 
-
 // POST api/users
-export async function createUser(req: IncomingMessage, res: ServerResponse): Promise<void>{
+export async function createUser(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    const body = 
 
+    const { username, age, hobby } = JSON.parse(body)
+
+    const user = {
+        username,
+        age,
+        hobby
+    }
+    const id = uuid();
+    const newUser = await User.addUser(user)
+    
+    res.writeHead(201, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify(newUser))
 };
 
-
+// PUT api/users/{userId}
 export async function updateUser(req: IncomingMessage, res: ServerResponse, userId: string) {
 
 };
