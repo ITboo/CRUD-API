@@ -33,11 +33,11 @@ export async function createUser(req: IncomingMessage, res: ServerResponse): Pro
 
 };
 
-/*
+
 export async function updateUser(req: IncomingMessage, res: ServerResponse, userId: string) {
 
 };
-*/
+
 // DELETE api/users/{userId}
 export async function deleteUser(req: IncomingMessage, res: ServerResponse, id: string): Promise<void> {
     if (!v8.validate(id)) {
