@@ -2,9 +2,9 @@ import { createServer } from 'http';
 import {
   getUsers,
   getUser,
-  createUser,
+  /*createUser,
   updateUser,
-  deleteUser
+  deleteUser*/
 } from "./src/controllers/userController";
 
 export const server = createServer((req, res) => {
