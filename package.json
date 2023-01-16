@@ -2,11 +2,10 @@
   "name": "crud-api",
   "version": "1.0.0",
   "description": "Just a simple CRUD API, made as a part of RS School course.",
-  "type": "module",
   "main": "index.ts",
   "scripts": {
-    "start": "node index.ts",
-    "star:dev": "nodemon index.ts "
+    "start": "ts-node-esm index.ts",
+    "start:dev": "nodemon index.ts"
   },
   "repository": {
     "type": "git",

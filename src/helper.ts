@@ -1,4 +1,9 @@
-//
+
+import { IUser } from "./models/userInterface";
+export function isUser(obj: any): obj is IUser {
+    return "username" in obj && "age" in obj && "hobbies" in obj;
+  }
+
 export function getPostData(req): Promise<string> {
     return new Promise((resolve, reject) => {
         try {
