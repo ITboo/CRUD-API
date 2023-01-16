@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": ".",
+        "target": "es2021",
+        "paths": {
+          "*": [
+            "types/*"
+          ]
+        },
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "baseUrl": "./typescript_template",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "skipLibCheck": true
+    }
+}
