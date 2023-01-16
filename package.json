@@ -6,6 +6,7 @@
   "scripts": {
     "start:prod": "ts-node-esm index.ts",
     "start:dev": "nodemon index.ts",
+    "start:multi": "test",
     "test": "jest"
   },
   "repository": {
