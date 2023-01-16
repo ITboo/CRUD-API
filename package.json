@@ -7,7 +7,7 @@
     "start:prod": "ts-node-esm index.ts",
     "start:dev": "nodemon index.ts",
     "start:multi": "test",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -25,13 +25,17 @@
   },
   "homepage": "https://github.com/ITboo/CRUD-API#readme",
   "devDependencies": {
+    "@types/jest": "^29.2.5",
     "@types/uuid": "^9.0.0",
     "jest": "^29.3.1",
     "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.12",
     "dotenv": "^16.0.3",
     "uuid": "^9.0.0"
   }
