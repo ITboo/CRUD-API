@@ -15,7 +15,7 @@ import {
 export async function route(req: IncomingMessage, res: ServerResponse) {
   try {
     console.log(`SERVER ${req.method} ${req.url}`);
-
+// without ID
     if (req.url === '/api/users') {
       if (req.method === "GET") {
         await getUsers(req, res);
@@ -25,7 +25,7 @@ export async function route(req: IncomingMessage, res: ServerResponse) {
         await errMethod(req, res) // 405
       }
     }
-
+// with ID
     else if (req.url.match(/^\/api\/users\/[\w-]+$/)) {
       const id = req.url.split("/")[3];
       if (req.method === "GET") {

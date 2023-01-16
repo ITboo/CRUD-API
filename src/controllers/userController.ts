@@ -7,7 +7,6 @@ import { errParse, notFound } from './codeController';
 import { getPostJSONData } from '../helper';
 import { CONTENT_TYPE } from '../constants/constants';
 
-
 // GET api/users
 export async function getUsers(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const users = await User.getUsers()
@@ -19,14 +18,16 @@ export async function getUsers(req: IncomingMessage, res: ServerResponse): Promi
 
 // GET api/users/{userId}
 export async function getUser(req: IncomingMessage, res: ServerResponse, id: string): Promise<void> {
-    const user = await User.getUser(id);
+
     if (v8.validate(id)) {
+        const user = await User.getUser(id);
+        if (user) {
+            res.writeHead(200, CONTENT_TYPE);
+            res.end(JSON.stringify(user));
 
-        res.writeHead(200, CONTENT_TYPE);
-        res.end(JSON.stringify(user));
-
-    } else {
-        await notFound(req, res); //404
+        } else {
+            await notFound(req, res); //404
+        }
     } else {
         await errParse(req, res); //400
     };
@@ -35,7 +36,7 @@ export async function getUser(req: IncomingMessage, res: ServerResponse, id: str
 // POST api/users
 export async function createUser(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const body = await getPostJSONData(req);
-    
+
     if (!body) {
         await errParse(req, res)
     } else {
@@ -54,10 +55,29 @@ export async function createUser(req: IncomingMessage, res: ServerResponse): Pro
     }
 };
 
-
 // PUT api/users/{userId}
-export async function updateUser(req: IncomingMessage, res: ServerResponse, userId: string) {
+export async function updateUser(req: IncomingMessage, res: ServerResponse, id: string) {
 
+    const body = await getPostJSONData(req);
+
+    if (!body) {
+        await errParse(req, res);
+    } else if (v8.validate(id)) {
+        if (await User.getUser(id)) {
+
+            const { username, age, hobbies } = body;
+            await User.updateUser({ id, username, age, hobbies });
+            res.writeHead(200, CONTENT_TYPE);
+            res.end(
+                JSON.stringify({
+                    message: 'Operation successfully completed',
+                    user: { id, username, age, hobbies },
+                })
+            );
+        } else {
+            await notFound(req, res); //404
+        }
+    }
 };
 
 // DELETE api/users/{userId}
@@ -71,4 +91,4 @@ export async function deleteUser(req: IncomingMessage, res: ServerResponse, id: 
     } else {
         await notFound(req, res); //404
     }
-};
+}
