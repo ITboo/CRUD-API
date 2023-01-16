@@ -4,6 +4,8 @@ import * as User from '../models/userModel';
 import { IncomingMessage, ServerResponse } from 'http';
 import { v8 } from 'uuid';
 import { errParse, notFound } from './codeController';
+import { getPostJSONData } from '../helper';
+
 
 // GET api/users
 export async function getUsers(req: IncomingMessage, res: ServerResponse): Promise<void> {
@@ -29,36 +31,40 @@ export async function getUser(req: IncomingMessage, res: ServerResponse, id: str
 
 // POST api/users
 export async function createUser(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    const body = 
+    const body = await getPostJSONData(req);
+    if (!body) {
+        await errParse(req, res)
+    } else {
+        const id = uuid();
+        const { username, age, hobbies } = body;
 
-    const { username, age, hobby } = JSON.parse(body)
+        await User.addUser({ id, username, age, hobbies });
 
-    const user = {
-        username,
-        age,
-        hobby
+        res.writeHead(201, "Content-Type": "application/json");
+        res.end(
+            JSON.stringify({
+                message: 'Operation successfully completed',
+                user: { id, username, age, hobbies },
+            })
+        );
     }
-    const id = uuid();
-    const newUser = await User.addUser(user)
-    
-    res.writeHead(201, { 'Content-Type': 'application/json' })
-    res.end(JSON.stringify(newUser))
 };
+
 
 // PUT api/users/{userId}
 export async function updateUser(req: IncomingMessage, res: ServerResponse, userId: string) {
 
-};
+    };
 
 // DELETE api/users/{userId}
 export async function deleteUser(req: IncomingMessage, res: ServerResponse, id: string): Promise<void> {
-    if (!v8.validate(id)) {
-        await errParse(req, res);
-    } else if (await User.getUser(id)) {
-        await User.deleteUser(id);
-        res.writeHead(204, { "Content-Type": "application/json" });
-        res.end();
-    } else {
-        await notFound(req, res); //404
-    }
-};
+        if (!v8.validate(id)) {
+            await errParse(req, res);
+        } else if (await User.getUser(id)) {
+            await User.deleteUser(id);
+            res.writeHead(204, { "Content-Type": "application/json" });
+            res.end();
+        } else {
+            await notFound(req, res); //404
+        }
+    };

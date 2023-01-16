@@ -3,14 +3,14 @@ import {
   errMethod,
   errServer,
   notFound
-} from './controllers/codeController';
+} from '../controllers/codeController';
 import {
   getUsers,
   getUser,
   createUser,
   updateUser,
   deleteUser
-} from "./controllers/userController";
+} from "../controllers/userController";
 
 export async function route(req: IncomingMessage, res: ServerResponse) {
   try {
