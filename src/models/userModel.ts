@@ -1,6 +1,6 @@
 // Модель отвечает за данные, которые хранятся и обрабатываются на сервере.
 
-import { IUser } from '../userInterface';
+import { IUser } from './userInterface';
 import userJSON from '../data/user.json';
 
 let users = userJSON as IUser[];
