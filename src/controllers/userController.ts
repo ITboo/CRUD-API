@@ -2,7 +2,7 @@
 
 import * as User from '../models/userModel';
 import { IncomingMessage, ServerResponse } from 'http';
-import { v8 } from 'uuid';
+import { validate, v4 as uuid } from 'uuid';
 import { errParse, notFound } from './codeController';
 import { getPostJSONData } from '../helper';
 import { CONTENT_TYPE } from '../constants/constants';
@@ -19,7 +19,7 @@ export async function getUsers(req: IncomingMessage, res: ServerResponse): Promi
 // GET api/users/{userId}
 export async function getUser(req: IncomingMessage, res: ServerResponse, id: string): Promise<void> {
 
-    if (v8.validate(id)) {
+    if (validate(id)) {
         const user = await User.getUser(id);
         if (user) {
             res.writeHead(200, CONTENT_TYPE);
@@ -62,7 +62,7 @@ export async function updateUser(req: IncomingMessage, res: ServerResponse, id: 
 
     if (!body) {
         await errParse(req, res);
-    } else if (v8.validate(id)) {
+    } else if (validate(id)) {
         if (await User.getUser(id)) {
 
             const { username, age, hobbies } = body;
@@ -82,7 +82,7 @@ export async function updateUser(req: IncomingMessage, res: ServerResponse, id: 
 
 // DELETE api/users/{userId}
 export async function deleteUser(req: IncomingMessage, res: ServerResponse, id: string): Promise<void> {
-    if (!v8.validate(id)) {
+    if (!validate(id)) {
         await errParse(req, res);
     } else if (await User.getUser(id)) {
         await User.deleteUser(id);

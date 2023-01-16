@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "start":"node index.ts",
+    "start": "node index.ts",
     "star:dev": "nodemon index.ts "
   },
   "repository": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ITboo/CRUD-API#readme",
   "devDependencies": {
+    "@types/uuid": "^9.0.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
