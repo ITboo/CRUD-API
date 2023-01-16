@@ -23,18 +23,23 @@ Made as a part of [RS School](https://rs.school/nodejs/) Node.js Course ([task l
 * DELETE api/users/${userId} - to delete existing user from database
 
 ### 2. How to install
+1. clone this repo ` git clone https://github.com/ITboo/CRUD-API.git `
+2. Run ` npm i `
 
 
 ### 3. How to run
-1.
-2.
-3.
+1. Install 
+2. Create .env file in the root of the project with defined PORT var
+3. Run one of following scripts:
 
-prod mode: npm run start:prod
+prod mode: `npm run start:prod`
 
-dev mode:npm run start:dev
+dev mode: `npm run start:dev`
 
-multi mode: npm run start:multi
+multi mode: `npm run start:multi`
 
 ### 4. Tests
+Run tests scenarios for API
+`npm run:test`
+
 ### 5. Multy Mode

@@ -4,8 +4,9 @@
   "description": "Just a simple CRUD API, made as a part of RS School course.",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node-esm index.ts",
+    "start:prod": "ts-node-esm index.ts",
     "start:dev": "nodemon index.ts"
+    
   },
   "repository": {
     "type": "git",
