@@ -6,6 +6,7 @@ import { validate, v4 as uuid } from 'uuid';
 import { errParse, notFound } from './codeController';
 import { getPostJSONData } from '../helper';
 import { CONTENT_TYPE } from '../constants/constants';
+import {Response} from '../constants/response'
 
 // GET api/users
 export async function getUsers(req: IncomingMessage, res: ServerResponse): Promise<void> {
@@ -48,7 +49,7 @@ export async function createUser(req: IncomingMessage, res: ServerResponse): Pro
         res.writeHead(201, CONTENT_TYPE);
         res.end(
             JSON.stringify({
-                message: 'Operation successfully completed',
+                message: Response.SUCCESS ,
                 user: { id, username, age, hobbies },
             })
         );
@@ -62,7 +63,7 @@ export async function updateUser(req: IncomingMessage, res: ServerResponse, id: 
 
     if (!body) {
         await errParse(req, res);
-    } else if (validate(id)) {
+    } else if ((body) && validate(id)) {
         if (await User.getUser(id)) {
 
             const { username, age, hobbies } = body;
@@ -70,7 +71,7 @@ export async function updateUser(req: IncomingMessage, res: ServerResponse, id: 
             res.writeHead(200, CONTENT_TYPE);
             res.end(
                 JSON.stringify({
-                    message: 'Operation successfully completed',
+                    message: Response.SUCCESS,
                     user: { id, username, age, hobbies },
                 })
             );

@@ -23,7 +23,7 @@ export async function addUser(user: IUser): Promise<void> {
 };
 
 // to update existing user
-export async function updateUser(id: string, user: IUser):Promise<void> {
+export async function updateUser(user: IUser): Promise<void> {
   users.map((p, index) => {
     if (p.id === user.id) {
       users[index] = user;

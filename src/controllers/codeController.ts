@@ -4,7 +4,7 @@ import { CONTENT_TYPE } from "../constants/constants";
 // 400 - Bad Request
 export async function errParse(req: IncomingMessage, res: ServerResponse): Promise<void> {
     res.writeHead(400, CONTENT_TYPE );
-    res.end(JSON.stringify({ message: 'Error' }));
+    res.end(JSON.stringify({ message: 'Parse Error' }));
 };
 
 // 404 - Not Found
