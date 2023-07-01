@@ -36,10 +36,10 @@ prod mode: `npm run start:prod`
 
 dev mode: `npm run start:dev`
 
-multi mode: `npm run start:multi`
-
 ### 4. Tests
 Run tests scenarios for API
 `npm run:test`
 
 ### 5. Multy Mode
+
+multi mode: `npm run start:multi`

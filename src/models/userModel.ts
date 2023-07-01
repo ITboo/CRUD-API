@@ -1,11 +1,7 @@
-// Модель отвечает за данные, которые хранятся и обрабатываются на сервере.
-
 import { IUser } from './userInterface';
 import userJSON from '../data/user.json';
 
 let users = userJSON as IUser[];
-
-// function a(): Promise<T> { return  }; где T – это некоторый параметр-тип T, который будет захвачен при вызове функции.
 
 //to get all persons
 export async function getUsers(): Promise<IUser[]> {

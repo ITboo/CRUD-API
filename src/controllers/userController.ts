@@ -1,5 +1,3 @@
-// Контроллер обрабатывает входящие запросы.
-
 import * as User from '../models/userModel';
 import { IncomingMessage, ServerResponse } from 'http';
 import { validate, v4 as uuid } from 'uuid';
