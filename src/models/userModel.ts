@@ -1,7 +1,6 @@
 import { IUser } from './userInterface';
-import userJSON from '../data/user.json';
 
-let users = userJSON as IUser[];
+let users = [] as IUser[];
 
 //to get all persons
 export async function getUsers(): Promise<IUser[]> {
