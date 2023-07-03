@@ -4,7 +4,7 @@
   "description": "Just a simple CRUD API, made as a part of RS School course.",
   "main": "index.ts",
   "scripts": {
-    "start:prod": "ts-node-esm index.ts",
+    "start:prod": "ts-node-esm ./src/index.ts",
     "start:dev": "nodemon index.ts",
     "start:multi": "nodemon -- --multi",
     "test": "jest --detectOpenHandles"

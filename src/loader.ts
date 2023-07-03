@@ -1,31 +1,53 @@
 import cluster from "cluster";
 import * as os from "os";
 import { server } from ".";
+import { createServer } from "http";
+import { route } from "./router/router";
 
 const numCpu = os.cpus();
-const port = process.env.PORT || 4000;
 
-export const loader = () => {
+
+const main = (port: number): void => {
+  console.log(
+    `Main process is running on port ${port}. Waiting for workers...`
+  );
+
+  for (let i = 0; i < numCpu.length; i += 1) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", () => {
+    cluster.fork();
+  });
+
+  /*cluster.on('message', (worker, msg) => {
+    if (msg.action === 'send users') {
+
+    }
+    if (msg.action === 'get users') {
+    
+    }
+  });*/
+};
+
+const worker = (port: number) => {
+  const workerId = cluster.worker!.id;
+  const workerPort = port + workerId;
+
+  const startServer = (port: number) => {
+    const server = createServer(async (req, res) => {
+      await route(req, res);
+    });
+  };
+
+  startServer(workerPort);
+  console.log(`Worker ${workerId} running on port ${workerPort}.`);
+};
+
+export const startMulti = (port: number): void => {
   if (cluster.isPrimary) {
-    console.log(`Primary ${process.pid} is running on ${port}`);
-
-    let workers = numCpu.map(() => cluster.fork({ workerPort: port }));
-
-    cluster.on("exit", (worker) => {
-      console.log(`worker ${worker.process.pid} died`);
-      workers = [
-        ...workers.filter((el) => el.process.pid !== worker.process.pid),
-        cluster.fork({ workerPort: port }),
-      ];
-    });
+    main(port);
   } else {
-    const workerPort = process.env.WORKER_PORT;
-    server.listen(workerPort, () => {
-      console.log(
-        `Worker ${process.pid} started server on`,
-        `${workerPort}`,
-        "port"
-      );
-    });
+    worker(port);
   }
 };
