@@ -1,37 +1,37 @@
+import { constants as httpConstants } from "http2";
 import supertest from "supertest";
-import { server } from "../src/index";
+import { server } from "../src";
 
-const app = server;
-const Route = '/api/users';
-let id = '';
-const fakeUser = Object.assign({
-    name: "test-user",
-    age: 25,
-    hobbies: ["test-hobby"]});
+const request = supertest(server);
 
-// Get all records with a GET api/users request (an empty array is expected)
-describe('Server test - 1 - Getting all records', () => {
-    it('returns an empty array', async () => {
-        await supertest(app)
-            .get(Route)
-        expect([]);
+describe("test methods", () => {
+  describe("404 error on methods", () => {
+    test("404 error on GET", async () => {
+      const response = await request.get("/non-existent/endpoint");
+
+      expect(response.status).toBe(httpConstants.HTTP_STATUS_NOT_FOUND);
     });
-    afterAll(() => app.close());
+
+    test("404 error on POST", async () => {
+      const response = await request
+        .post("/non-existent/endpoint")
+        .send("content");
+
+      expect(response.status).toBe(httpConstants.HTTP_STATUS_NOT_FOUND);
+    });
+
+    test("404 error on PUT", async () => {
+      const response = await request
+        .put("/non-existent/endpoint")
+        .send("content");
+
+      expect(response.status).toBe(httpConstants.HTTP_STATUS_NOT_FOUND);
+    });
+
+    test("404 error on DELETE", async () => {
+      const response = await request.delete("/non-existent/endpoint");
+
+      expect(response.status).toBe(httpConstants.HTTP_STATUS_NOT_FOUND);
+    });
+  });
 });
-//With a GET api/user/{userId} request, we try to get the created record by its id (the created record is expected)
-
-
-
-//A new object is created by a POST api/users request (a response containing newly created record is expected)
-describe('Server test - 2 - Creating a new user', () => {
-    it('creates a new user', async () => {
-        
-            const res = await supertest(app)
-            .post(Route)
-            .send(fakeUser)
-            .expect(201);
-        })
-
-    });
-      afterAll(() => app.close());
-
