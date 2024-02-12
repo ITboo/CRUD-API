@@ -1,10 +1,10 @@
-import deleteUser from "../controllers/deleteUser";
-import getUser from "../controllers/getUser";
-import getUsers from "../controllers/getUsers";
-import postUser from "../controllers/postUser";
-import putUser from "../controllers/putUser";
+import deleteUser from "../../controllers/deleteUser";
+import getUser from "../../controllers/getUser";
+import getUsers from "../../controllers/getUsers";
+import postUser from "../../controllers/postUser";
+import putUser from "../../controllers/putUser";
 
-import { RouteType } from "../../common/types/types";
+import { RouteType } from "../../../common/types/types";
 
 export const usersRoutes: RouteType[] = [
     {

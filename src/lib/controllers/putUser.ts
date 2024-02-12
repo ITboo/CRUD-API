@@ -1,13 +1,14 @@
-import { STATUS_CODE } from "../../common/constants";
+import { RequestError, STATUS_CODE } from "../../common/constants";
 import { ERRORS } from "../../common/messages";
 import { ControllerType } from "../../common/types/types";
 import { getDBUsers, setDBUsers } from "../data/db";
 import { sendError } from "../utils/error";
-import { isIdValid } from "../utils/id";
+import { getBody, getData, verifyBody } from "../utils/request/request";
+import { isIdValid } from "../utils/validator";
 
 const putUser: ControllerType = async (req, res) => {
   try {
-    const { pathname } = getRequestData(req);
+    const { pathname } = getData(req);
     const [requestUserId] = pathname.split('/').slice(-1);
 
     if (!isIdValid(requestUserId)) {
@@ -15,8 +16,8 @@ const putUser: ControllerType = async (req, res) => {
       return;
     }
 
-    const requestBody = await getRequestBody(req);
-    const verifiedUserData = verifyUserBody(requestBody);
+    const requestBody = await getBody(req);
+    const verifiedUserData = verifyBody(requestBody);
 
     if (verifiedUserData) {
       const users = await getDBUsers();
@@ -35,9 +36,9 @@ const putUser: ControllerType = async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(STATUS_CODE.OK);
       res.end(JSON.stringify(updatedUser, null, 2));
-    } else throw new RequestBodyError();
+    } else throw new RequestError();
   } catch (err) {
-    if (err instanceof RequestBodyError) {
+    if (err instanceof RequestError) {
       sendError(res, ERRORS.INVALID_BODY);
     } else {
       sendError(res, ERRORS.INTERNAL_SERVER_ERROR);

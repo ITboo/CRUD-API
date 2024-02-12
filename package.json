@@ -6,7 +6,7 @@
   "scripts": {
     "start:prod": "npm run build && node ./dist/index.js",
     "start:dev": "nodemon index.ts",
-    "start:multi": "nodemon -- --multi",
+    "start:multi": "cross-env MULTI=multi tsnd -r tsconfig-paths/register ./src/index.ts",
     "test": "jest --detectOpenHandles"
   },
   "repository": {
@@ -26,6 +26,8 @@
   "homepage": "https://github.com/ITboo/CRUD-API#readme",
   "devDependencies": {
     "@types/jest": "^29.2.5",
+    "@types/node": "^20.3.3",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^9.0.0",
     "@webpack-cli/generators": "^3.0.7",
     "cross-env": "^7.0.3",
@@ -35,6 +37,7 @@
     "ts-jest": "^29.0.5",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^4.9.4",
@@ -42,8 +45,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@types/node": "^20.3.3",
-    "@types/supertest": "^2.0.12",
     "dotenv": "^16.4.2",
     "uuid": "^9.0.0"
   }

@@ -5,7 +5,7 @@ export const START = "Server is running on port: ";
 export const ERRORS = {
     INVALID_ID: {
       code: STATUS_CODE.BAD_REQUEST,
-      message: "{userId} is invalid (not uuid)!",
+      message: "ID is invalid (not uuid)!",
     },
     INVALID_BODY: {
       code: STATUS_CODE.BAD_REQUEST,
@@ -13,7 +13,7 @@ export const ERRORS = {
     },
     NO_ENDPOINT: {
       code: STATUS_CODE.NOT_FOUND,
-      message: "Oops! Endpoint doesn't exist",
+      message: "This endpoint doesn't exist",
     },
     USER_NOT_EXIST: {
       code: STATUS_CODE.NOT_FOUND,

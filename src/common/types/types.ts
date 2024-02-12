@@ -5,8 +5,9 @@ export type ControllerType = (
   res: ServerResponse
 ) => void;
 
+export type UserIdType = string;
 export type UserType = {
-  id: string;
+  id: UserIdType;
   username: string;
   age: number;
   hobbies: string[];

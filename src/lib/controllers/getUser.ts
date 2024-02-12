@@ -3,11 +3,12 @@ import { ERRORS } from "../../common/messages";
 import { ControllerType } from "../../common/types/types";
 import { getDBUsers } from "../data/db";
 import { sendError } from "../utils/error";
-import { isIdValid } from "../utils/id";
+import { getData } from "../utils/request/request";
+import { isIdValid } from "../utils/validator";
 
 const getUser: ControllerType = async (req, res) => {
   try {
-    const { pathname } = getRequestData(req);
+    const { pathname } = getData(req);
     const [requestUserId] = pathname.split('/').slice(-1);
 
     if (!isIdValid(requestUserId)) {

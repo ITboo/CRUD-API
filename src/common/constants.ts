@@ -12,4 +12,4 @@ export enum STATUS_CODE {
   SERVER_ERROR = 500,
 };
 
-export class RequestBodyError extends Error {};
+export class RequestError extends Error {};
