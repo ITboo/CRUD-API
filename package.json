@@ -7,7 +7,7 @@
     "start:prod": "npm run build && node ./dist/index.js",
     "start:dev": "nodemon index.ts",
     "start:multi": "cross-env MULTI=multi tsnd -r tsconfig-paths/register ./src/index.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --silent --runInBand"
   },
   "repository": {
     "type": "git",
