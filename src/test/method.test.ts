@@ -2,7 +2,7 @@ import { constants as httpConstants } from "http2";
 import supertest from "supertest";
 
 import { createServer } from "http";
-import { route } from "../src/router/router";
+import { route } from "../lib/router/router";
 
 const server = createServer(async (req, res) => {
   await route(req, res);
