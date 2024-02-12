@@ -27,5 +27,5 @@ export const createDBServer = () =>
   });
 
 export const startMessageDB = (PORT: number) => {
-  console.log(consoleColors.yellow, `Database ${START} ${PORT}` );
+  console.log(consoleColors.yellow, `Database ${START}${PORT}` );
 };

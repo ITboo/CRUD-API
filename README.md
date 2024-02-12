@@ -1,12 +1,6 @@
 # Simple CRUD API
 ## using Node.js with no framework
 
-1. Description
-2. How to install
-3. How to run
-4. Tests
-5. Multi mode
-
 ### 1. Description
 Made as a part of [RS School](https://rs.school/nodejs/) Node.js Course ([task link](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/crud-api/assignment.md))
 
@@ -24,22 +18,14 @@ Made as a part of [RS School](https://rs.school/nodejs/) Node.js Course ([task l
 
 ### 2. How to install
 1. clone this repo ` git clone https://github.com/ITboo/CRUD-API.git `
-2. Run ` npm i `
+2. go to cloned repo ` cd crud-api `
+3. Run ` npm install ` to install all needed dependencies
+4. You can run these scripts:
 
+To run in production mode: `npm run start:prod`
 
-### 3. How to run
-1. Install 
-2. Create .env file in the root of the project with defined PORT var
-3. Run one of following scripts:
+To start in dev mode: `npm run start:dev`
 
-prod mode: `npm run start:prod`
+To run multi mode with load balancer: `npm run start:multi`
 
-dev mode: `npm run start:dev`
-
-### 4. Tests
-Run tests scenarios for API
-`npm run:test`
-
-### 5. Multy Mode
-
-multi mode: `npm run start:multi`
+To run tests scenarios for API: `npm run:test`

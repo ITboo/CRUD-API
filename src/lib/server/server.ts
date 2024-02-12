@@ -12,7 +12,7 @@ export const createServer = () =>
   );
 
 export const startMessage = (PORT: number) => {
-  console.log(consoleColors.yellow, `${START} ${PORT}`);
+  console.log(consoleColors.green, `${START}${PORT}`);
 };
 
 const routes: RouteType[] = [...usersRoutes];

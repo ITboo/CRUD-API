@@ -1,6 +1,8 @@
 import { STATUS_CODE } from "./constants";
 
 export const START = "Server is running on port: ";
+export const BALANCER = "Balancer is running on port: ";
+export const CHILD = "Child server is running on port: ";
 
 export const ERRORS = {
     INVALID_ID: {

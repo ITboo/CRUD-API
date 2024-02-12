@@ -1,8 +1,10 @@
 import { createServer, request as httpRequest } from "http";
+
 import { sendError } from "../error";
-import { ERRORS } from "../../../common/messages";
-import { consoleColors } from "../consoleColors";
 import { getBody } from "../request/request";
+
+import { BALANCER, CHILD, ERRORS } from "../../../common/messages";
+import { consoleColors } from "../consoleColors";
 
 export const balancer = (PORT: number, children: number) =>
   createServer(async (req, res) => {
@@ -36,8 +38,8 @@ export const balancer = (PORT: number, children: number) =>
         }
       );
 
-      requestToChild.on("error", (error) => {
-        console.error(error);
+      requestToChild.on("error", (err) => {
+        console.error(consoleColors.red, err);
       });
 
       requestToChild.write(JSON.stringify(body || ""));
@@ -51,9 +53,9 @@ export const balancer = (PORT: number, children: number) =>
   });
 
 export const balancerMessage = (PORT: number) => {
-  console.log(consoleColors.green, `Balancer is running on port: ${PORT}`);
+  console.log(consoleColors.green, `${BALANCER}${PORT}`);
 };
 
 export const startMessageChild = (PORT: number) => {
-  console.log(consoleColors.gray, `Child server is running on port ${PORT}`);
+  console.log(consoleColors.gray, `${CHILD}${PORT}`);
 };
