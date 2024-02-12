@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
+        "outDir": "./dist",
         "rootDir": ".",
         "target": "es2021",
         "paths": {
